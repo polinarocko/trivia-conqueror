@@ -1,0 +1,158 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+h2{
+  font-family: "DM Serif Display", serif;
+  text-align: center;
+  padding: 60px;
+  font-size: 80px;
+  color: rgb(27, 27, 27);
+}
+
+h5{
+    font-family: "DM Serif Display", serif;
+  text-align: center;
+  padding: 30px;
+  font-size: 20px;
+}
+
+.container{
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.zone{
+  width: calc((100% - 150px) / 16);
+  height: 60px;
+  background-color: rgb(196, 196, 196);
+  box-sizing: border-box;
+}
+
+#zones{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.redselected{
+  border: 4px solid rgb(255, 20, 20);
+  background-color: rgb(240, 144, 138);
+}
+
+.blueselected{
+  border: 4px solid rgb(77, 133, 253);
+  background-color: rgb(170, 183, 239);
+}
+
+.modal{
+  background-color: rgba(94, 20, 94, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.Blue{
+  background-color: rgba(170, 183, 239, 0.5);
+  pointer-events: auto;
+  
+}
+
+.modal.Red{
+  background-color: rgba(234, 127, 127, 0.5);
+  pointer-events: auto;
+}
+
+form{
+  background-color: rgb(219, 219, 219);
+  width: 60%;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .options{
+  width: 50%;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+}
+
+form button{
+  width: calc(50% - 5px);
+  padding: 10px;
+  font-family: "DM Serif Display", serif;
+}
+
+h1{
+    font-family: "DM Serif Display", serif;
+    margin-bottom: 10px;
+}
+
+.green{
+  background-color: rgb(148, 220, 159);
+}
+
+.red{
+  background-color: rgb(234, 127, 127);
+  pointer-events: none;
+}
+
+.blue{
+  background-color: rgb(170, 183, 239);
+  pointer-events: none;
+}
+
+.Red{
+  color: rgb(234, 127, 127);
+  pointer-events: none;
+}
+
+.Blue{
+  color: rgb(170, 183, 239);
+  pointer-events: none;
+}
+
+h6{
+  /* background-color: aqua; */
+  padding: 5px;
+  font-family: "DM Serif Display", serif;
+  display: inline;
+  margin-bottom: 10px;
+  font-size: 17px;
+  text-align: center;
+}
+
+button{
+  display: block;
+  padding: 6px 10px;
+  text-align: center;
+  margin: auto;
+  font-size: 30px;
+  /* font-family: "DM Serif Display", serif; */
+  border-radius: 6px;
+  background-color: rgb(196, 196, 196);
+  color: aliceblue;
+  border: none;
+}
+
+.Battle{
+  pointer-events: auto;
+}
+
+[data-turn="Red"] .zone:hover {
+   border: 4px solid rgb(255, 20, 20);
+}
+
+[data-turn="Blue"] .zone:hover {
+   border: 4px solid rgb(77, 133, 253);
+}
