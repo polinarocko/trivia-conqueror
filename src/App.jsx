@@ -1,5 +1,6 @@
 import { use, useEffect, useState, useSyncExternalStore } from 'react'
 import './App.css'
+import Modal from './Modal'
 
 function App() {
   // state
@@ -13,10 +14,6 @@ function App() {
   // these are states
   const [availablezones, setAvailablezones] = useState(8)
   const [modalshowing, setModalshowing] = useState(false)
-  const [data, setData] = useState(null)
-  const [buttons, setButtons] = useState([])
-  const [answerclass, setAnswerclass] = useState("")
-  const [selectedanswer, setSelectedanswer] = useState("")
   const [turn, setTurn] = useState("Red")
   const [redcounter, setRedcounter] = useState(0)
   const [blueconter, setBluecounter] = useState(0)
@@ -24,9 +21,7 @@ function App() {
   const [charentities, setCharentities] = useState(["&quot;", "&#039;"])
 
   useEffect(() => {
-    console.log(zones)
     let freezones = zones.filter((z) => z.owner == null)
-    console.log(freezones);
     if (freezones.length == 0) {
       setRound("Battle")
       setRedcounter(zones.filter((z) => z.owner == "red").length)
@@ -34,16 +29,6 @@ function App() {
     }
   }, [zones])
 
-
-  useEffect(() => {
-    data && setButtons(() => {
-      let answers = [data.correct_answer, ...data.incorrect_answers]
-      answers.sort((a, b) => {
-        return Math.random() > 0.5 ? 1 : -1
-      })
-      return answers
-    })
-  }, [data])
 
 
   function handleZone(i) {
@@ -72,17 +57,6 @@ function App() {
 
   function handleStartgame() {
     setModalshowing(true)
-    fetch('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple')
-      .then(response => response.json())
-      .then(data => setData(() => {
-        // data.results[0]
-        let nextdata = data.results[0]
-        nextdata.question = nextdata.question.replace("&quot;", '"')
-        nextdata.question = nextdata.question.replace("&#039;", '"')
-        // console.log(nextdata);
-        
-        return nextdata
-      }))
 
   }
 
@@ -138,24 +112,7 @@ function App() {
   return (
     <>
       {
-        modalshowing && <div className={"modal " + turn}>
-          <form action="">
-            <h3>difficulty : {data && data.difficulty}</h3>
-            <h1>{data && data.question}</h1>
-            <div className="options">
-              {
-                buttons.map((a, i) => {
-                  return <button onClick={() => handleAnswer(a)} className={
-                    (selectedanswer !== "" && a == data.correct_answer && "green")
-                    + " " +
-                    (selectedanswer == a && answerclass)
-                  } type='button' disabled={selectedanswer == "" ? false : true} >{a}</button>
-
-                })
-              }
-            </div>
-          </form>
-        </div>
+        modalshowing && <Modal turn = {turn} setZones = {setZones} setModalshowing = {setModalshowing} setAvailablezones = {setAvailablezones} setTurn = {setTurn}></Modal>
       }
 
       <div className="container">
@@ -165,7 +122,7 @@ function App() {
         <div data-turn={turn} id="zones">
           {
             zones.map((z, i) => {
-              return <div onClick={() => handleZone(i)} className={`${z.owner ? z.owner : ""} zone ${z.selected} Battle`}>
+              return <div key={i} onClick={() => handleZone(i)} className={`${z.owner ? z.owner : ""} zone ${z.selected} Battle`}>
               </div>
             }
             )
