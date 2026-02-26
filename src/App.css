@@ -59,6 +59,15 @@ h5{
   align-items: center;
 }
 
+.modal .line{
+  background-color: rgba(40, 40, 40, 0.75);
+  width: 100%;
+  height: 5px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+
+}
+
 .modal.Blue{
   background-color: rgba(170, 183, 239, 0.5);
   pointer-events: auto;
