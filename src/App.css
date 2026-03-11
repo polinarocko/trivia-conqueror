@@ -68,6 +68,11 @@ h5{
 
 }
 
+.modal .hide{
+  width: 0;
+  transition: 14.9s;
+}
+
 .modal.Blue{
   background-color: rgba(170, 183, 239, 0.5);
   pointer-events: auto;
