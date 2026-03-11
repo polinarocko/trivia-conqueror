@@ -9,6 +9,7 @@ function Modal({ turn, setZones, setModalshowing, setAvailablezones, setTurn }) 
     const [answerclass, setAnswerclass] = useState("")
     const [selectedanswer, setSelectedanswer] = useState("")
     const [charentities, setCharentities] = useState(["&quot;", "&#039;"])
+    const [lineclass, setLineclass] = useState("line")
     let modaltimeout = null;
 
     useEffect(() => {
@@ -25,7 +26,6 @@ function Modal({ turn, setZones, setModalshowing, setAvailablezones, setTurn }) 
     useEffect(() => {
         console.log("15");
         modaltimeout = setTimeout(() => {
-    
             setModalshowing(false)
         }, 15000)
         fetch('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple')
@@ -44,6 +44,7 @@ function Modal({ turn, setZones, setModalshowing, setAvailablezones, setTurn }) 
 
     function handleAnswer(answer) {
         setSelectedanswer(answer)
+        setLineclass("line hide")
         if (answer == data.correct_answer) {
             setAnswerclass("green")
             setZones((zones) => {
@@ -96,7 +97,7 @@ function Modal({ turn, setZones, setModalshowing, setAvailablezones, setTurn }) 
         <>
             <div className={"modal " + turn}>
                 <form action="">
-                    <div className="line"></div>
+                    <div className={lineclass}></div>
                     <h3>difficulty : {data && data.difficulty}</h3>
                     <h1>{data && data.question}</h1>
                     <div className="options">
